@@ -172,30 +172,30 @@ export default function ProjectTable({
 
   return (
     <>
-      <div className="border rounded-lg overflow-hidden">
+      <div className="w-full border border-[#2B332E] rounded-xl overflow-hidden bg-[#141715] shadow-xs">
         <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Project</TableHead>
-              <TableHead>Template</TableHead>
-              <TableHead>Created</TableHead>
-              <TableHead>User</TableHead>
-              <TableHead className="w-[50px]">Actions</TableHead>
+          <TableHeader className="bg-[#0D0F0E]">
+            <TableRow className="border-b border-[#2B332E] hover:bg-transparent">
+              <TableHead className="text-[#9BA59E] font-mono text-xs uppercase tracking-wider">Project</TableHead>
+              <TableHead className="text-[#9BA59E] font-mono text-xs uppercase tracking-wider">Template</TableHead>
+              <TableHead className="text-[#9BA59E] font-mono text-xs uppercase tracking-wider">Created</TableHead>
+              <TableHead className="text-[#9BA59E] font-mono text-xs uppercase tracking-wider">User</TableHead>
+              <TableHead className="w-[50px] text-[#9BA59E] font-mono text-xs uppercase tracking-wider text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {projects.map((project) => (
-              <TableRow key={project.id}>
+              <TableRow key={project.id} className="border-b border-[#2B332E]/60 hover:bg-[#1B201D] transition-colors">
                 <TableCell className="font-medium">
                   <div className="flex flex-col">
                     <Link
-                      href={`playground/${project.id}`}
-                      className="hover:underline"
+                      href={`/playground/${project.id}`}
+                      className="text-[#F2F5F2] hover:text-[#C5F36B] transition-colors font-semibold text-sm"
                     >
-                      <span className="font-semibold">{project.title}</span>
+                      {project.title}
                     </Link>
-                    <span className="text-sm text-gray-500 line-clamp-1">
-                      {project.description}
+                    <span className="text-xs text-[#9BA59E] line-clamp-1 mt-0.5">
+                      {project.description || "No description provided"}
                     </span>
                   </div>
                 </TableCell>
@@ -204,12 +204,12 @@ export default function ProjectTable({
                     const meta = templateMeta[project.template] || {
                       icon: "/file.svg",
                       label: project.template,
-                      badgeClass: "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/30",
+                      badgeClass: "bg-[#1B201D] text-[#9BA59E] border-[#2B332E]",
                     };
                     return (
                       <Badge
                         variant="outline"
-                        className={`inline-flex items-center gap-1.5 font-medium px-2.5 py-1 rounded-md text-xs ${meta.badgeClass}`}
+                        className={`inline-flex items-center gap-1.5 font-mono font-medium px-2.5 py-0.5 rounded-md text-[11px] ${meta.badgeClass}`}
                       >
                         <Image
                           src={meta.icon}
@@ -223,27 +223,27 @@ export default function ProjectTable({
                     );
                   })()}
                 </TableCell>
-                <TableCell className="text-muted-foreground text-sm font-medium">
+                <TableCell className="text-[#9BA59E] text-xs font-mono font-medium">
                   {format(new Date(project.createdAt), "MMM d, yyyy")}
                 </TableCell>
                 <TableCell>
                   <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded-full overflow-hidden border border-border bg-muted flex items-center justify-center shrink-0">
+                    <div className="w-7 h-7 rounded-full overflow-hidden border border-[#2B332E] bg-[#1B201D] flex items-center justify-center shrink-0">
                       {project.user?.image ? (
                         <Image
                           src={project.user.image}
                           alt={project.user?.name || "User"}
-                          width={32}
-                          height={32}
+                          width={28}
+                          height={28}
                           className="object-cover h-full w-full"
                         />
                       ) : (
-                        <span className="text-xs font-semibold text-muted-foreground">
+                        <span className="text-[10px] font-mono font-semibold text-[#C5F36B]">
                           {(project.user?.name?.[0] || "U").toUpperCase()}
                         </span>
                       )}
                     </div>
-                    <span className="text-sm font-medium text-foreground">
+                    <span className="text-xs font-medium text-[#F2F5F2]">
                       {project.user?.name || "User"}
                     </span>
                   </div>

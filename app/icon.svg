@@ -1,49 +1,38 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="vibe-bg" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#0B0F19"/>
-      <stop offset="100%" stop-color="#020617"/>
-    </linearGradient>
-    <linearGradient id="vibe-primary" x1="120" y1="100" x2="392" y2="420" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#38BDF8"/>
-      <stop offset="50%" stop-color="#6366F1"/>
-      <stop offset="100%" stop-color="#4F46E5"/>
-    </linearGradient>
-    <linearGradient id="vibe-facet-left" x1="130" y1="120" x2="256" y2="390" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#60A5FA"/>
-      <stop offset="100%" stop-color="#3B82F6"/>
-    </linearGradient>
-    <linearGradient id="vibe-facet-right" x1="382" y1="120" x2="256" y2="390" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#818CF8"/>
-      <stop offset="100%" stop-color="#4F46E5"/>
-    </linearGradient>
-    <linearGradient id="vibe-accent" x1="200" y1="200" x2="312" y2="320" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#A5B4FC"/>
-      <stop offset="100%" stop-color="#6366F1"/>
-    </linearGradient>
-    <filter id="vibe-glow" x="70" y="70" width="372" height="372" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-      <feGaussianBlur stdDeviation="24" result="blur"/>
-      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-    </filter>
+    <radialGradient id="codenest-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#C5F36B" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#C5F36B" stop-opacity="0" />
+    </radialGradient>
   </defs>
 
-  <!-- Base Rounded Container with subtle border -->
-  <rect width="512" height="512" rx="128" fill="url(#vibe-bg)"/>
-  <rect x="1" y="1" width="510" height="510" rx="127" stroke="#334155" stroke-opacity="0.4" stroke-width="2"/>
+  <!-- Container -->
+  <rect width="512" height="512" rx="128" fill="#0D0F0E"/>
+  <rect x="2" y="2" width="508" height="508" rx="126" stroke="#2B332E" stroke-width="4"/>
 
-  <!-- Subtle glow beneath glyph -->
-  <circle cx="256" cy="256" r="110" fill="#6366F1" fill-opacity="0.2" filter="url(#vibe-glow)"/>
+  <!-- Radial accent glow -->
+  <circle cx="256" cy="256" r="200" fill="url(#codenest-glow)"/>
 
-  <!-- Left Stem of V - Sleek angled wing with precision rounded bevels -->
-  <path d="M124 136C124 127.163 131.163 120 140 120H196C203.242 120 209.73 124.871 211.758 131.821L256 283.5L228 382C226.35 387.8 221.05 392 215 392H192C185.373 392 180 386.627 180 380L124.6 142.3C124.2 140.2 124 138.1 124 136Z" fill="url(#vibe-facet-left)"/>
+  <!-- Inner Surface Card -->
+  <rect x="72" y="72" width="368" height="368" rx="72" fill="#141715" stroke="#2B332E" stroke-width="2"/>
 
-  <!-- Right Stem of V -->
-  <path d="M388 136C388 127.163 380.837 120 372 120H316C308.758 120 302.27 124.871 300.242 131.821L256 283.5L284 382C285.65 387.8 290.95 392 297 392H320C326.627 392 332 386.627 332 380L387.4 142.3C387.8 140.2 388 138.1 388 136Z" fill="url(#vibe-facet-right)"/>
+  <!-- Terminal Prompt Chevron '>' -->
+  <path 
+    d="M 180 176 L 268 256 L 180 336" 
+    stroke="#C5F36B" 
+    stroke-width="36" 
+    stroke-linecap="round" 
+    stroke-linejoin="round"
+  />
 
-  <!-- Center Core Prism Glyph: Dynamic Code Vertex -->
-  <path d="M256 188L294 316H218L256 188Z" fill="url(#vibe-accent)" fill-opacity="0.9"/>
-  <path d="M256 204L284 300H228L256 204Z" fill="#0B0F19"/>
-
-  <!-- Inner Spark: Precision Cyan Accent -->
-  <circle cx="256" cy="268" r="14" fill="#38BDF8"/>
+  <!-- Terminal Cursor Underscore '_' -->
+  <line 
+    x1="288" 
+    y1="336" 
+    x2="352" 
+    y2="336" 
+    stroke="#F2F5F2" 
+    stroke-width="36" 
+    stroke-linecap="round"
+  />
 </svg>

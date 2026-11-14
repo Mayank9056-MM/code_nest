@@ -14,10 +14,10 @@ import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { 
   Bot, 
-  Loader2,
-  Power,
-  PowerOff,
-  Sparkles
+  Loader2, 
+  Power, 
+  PowerOff, 
+  Sparkles 
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -41,95 +41,95 @@ const ToggleAI: React.FC<ToggleAIProps> = ({
       <DropdownMenuTrigger asChild>
         <Button 
           size="sm" 
-          variant={isEnabled ? "default" : "outline"}
+          variant="outline"
           className={cn(
-            "relative gap-2 h-8 px-3 text-sm font-medium transition-all duration-200 cursor-pointer",
+            "relative gap-2 h-8 px-3 text-xs font-mono font-medium transition-all duration-200 cursor-pointer",
             isEnabled 
-              ? "bg-zinc-900 hover:bg-zinc-800 text-zinc-50 border-zinc-800 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-zinc-900 dark:border-zinc-200 shadow-sm" 
-              : "bg-background hover:bg-accent text-foreground border-border",
+              ? "bg-[#141715] hover:bg-[#1B201D] text-[#F2F5F2] border-[#C5F36B]/50 shadow-[0_0_12px_rgba(197,243,107,0.1)]" 
+              : "bg-[#0D0F0E] hover:bg-[#141715] text-[#9BA59E] border-[#2B332E]",
             suggestionLoading && "opacity-75"
           )}
           onClick={(e) => e.preventDefault()}
         >
           {suggestionLoading ? (
-            <Loader2 className="h-4 w-4 animate-spin text-rose-500" />
+            <Loader2 className="h-3.5 w-3.5 animate-spin text-[#C5F36B]" />
           ) : (
-            <Sparkles className="h-4 w-4 text-rose-500" />
+            <Sparkles className="h-3.5 w-3.5 text-[#C5F36B]" />
           )}
           <span>AI</span>
           <div
             className={cn(
-              "w-2 h-2 rounded-full",
-              isEnabled ? "bg-emerald-500 animate-pulse" : "bg-zinc-400"
+              "w-1.5 h-1.5 rounded-full transition-all",
+              isEnabled ? "bg-[#C5F36B] shadow-[0_0_6px_#C5F36B]" : "bg-[#9BA59E]/40"
             )}
           />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-72">
-        <DropdownMenuLabel className="flex items-center justify-between py-2">
+      <DropdownMenuContent align="end" className="w-72 bg-[#141715] border-[#2B332E] text-[#F2F5F2] shadow-2xl p-1.5">
+        <DropdownMenuLabel className="flex items-center justify-between py-2 px-2">
           <div className="flex items-center gap-2">
-            <Bot className="h-4 w-4 text-rose-500" />
-            <span className="text-sm font-medium">AI Code Assistant</span>
+            <Bot className="h-4 w-4 text-[#C5F36B]" />
+            <span className="text-xs font-mono uppercase tracking-wider text-[#F2F5F2]">AI Code Assistant</span>
           </div>
           <Badge 
             variant="outline" 
             className={cn(
-              "text-xs font-semibold",
+              "text-[10px] font-mono",
               isEnabled 
-                ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30" 
-                : "bg-muted text-muted-foreground"
+                ? "bg-[#C5F36B]/15 text-[#C5F36B] border-[#C5F36B]/40" 
+                : "bg-[#0D0F0E] text-[#9BA59E] border-[#2B332E]"
             )}
           >
-            {isEnabled ? "Active" : "Disabled"}
+            {isEnabled ? "ACTIVE" : "DISABLED"}
           </Badge>
         </DropdownMenuLabel>
         
         {suggestionLoading && activeFeature && (
-          <div className="px-3 pb-3">
-            <div className="space-y-2">
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
+          <div className="px-2 pb-2">
+            <div className="space-y-1.5 p-2 rounded border border-[#2B332E] bg-[#0D0F0E]">
+              <div className="flex items-center justify-between text-[11px] font-mono text-[#9BA59E]">
                 <span>{activeFeature}</span>
-                <span>{Math.round(loadingProgress)}%</span>
+                <span className="text-[#C5F36B]">{Math.round(loadingProgress)}%</span>
               </div>
               <Progress 
                 value={loadingProgress} 
-                className="h-1.5"
+                className="h-1 bg-[#141715]"
               />
             </div>
           </div>
         )}
         
-        <DropdownMenuSeparator />
+        <DropdownMenuSeparator className="bg-[#2B332E]" />
         
         <DropdownMenuItem 
           onClick={() => onToggle(!isEnabled)}
-          className="py-2.5 cursor-pointer"
+          className="py-2.5 px-2 cursor-pointer focus:bg-[#1B201D] focus:text-[#F2F5F2] rounded"
         >
           <div className="flex items-center justify-between w-full">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5">
               {isEnabled ? (
-                <Power className="h-4 w-4 text-rose-500" />
+                <Power className="h-4 w-4 text-[#C5F36B]" />
               ) : (
-                <PowerOff className="h-4 w-4 text-muted-foreground" />
+                <PowerOff className="h-4 w-4 text-[#9BA59E]" />
               )}
               <div>
-                <div className="text-sm font-medium">
+                <div className="text-xs font-medium text-[#F2F5F2]">
                   {isEnabled ? "Disable" : "Enable"} AI Suggestions
                 </div>
-                <div className="text-xs text-muted-foreground">
+                <div className="text-[11px] text-[#9BA59E]">
                   Toggle inline code completion
                 </div>
               </div>
             </div>
             <div className={cn(
-              "w-8 h-4 rounded-full border transition-all duration-200 relative",
+              "w-7 h-4 rounded-full border transition-all duration-200 relative",
               isEnabled 
-                ? "bg-zinc-900 border-zinc-900 dark:bg-zinc-50 dark:border-zinc-50" 
-                : "bg-muted border-border"
+                ? "bg-[#C5F36B] border-[#C5F36B]" 
+                : "bg-[#0D0F0E] border-[#2B332E]"
             )}>
               <div className={cn(
-                "w-3 h-3 rounded-full bg-background transition-all duration-200 absolute top-0.5",
-                isEnabled ? "left-4" : "left-0.5"
+                "w-2.5 h-2.5 rounded-full transition-all duration-200 absolute top-0.5",
+                isEnabled ? "left-3.5 bg-[#0D0F0E]" : "left-0.5 bg-[#9BA59E]"
               )} />
             </div>
           </div>

@@ -1,122 +1,112 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { Code2, Compass, Home, LayoutDashboard, Terminal } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { BrandLogo } from "@/modules/home/components/BrandLogo";
+import { Home, LayoutDashboard, ArrowRight } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col justify-between selection:bg-primary/10">
-      {/* Top Navigation Bar */}
-      <header className="border-b border-border/40 bg-background/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-card border border-border/80 shadow-2xs group-hover:border-primary/40 transition-colors">
-              <Image
-                src="/logo.svg"
-                alt="CodeNest Logo"
-                width={22}
-                height={22}
-                className="object-contain"
-                priority
-              />
-            </div>
-            <span className="font-semibold text-base tracking-tight text-foreground">
-              Code<span className="text-primary font-bold">Nest</span>
-            </span>
-          </Link>
+    <div className="min-h-screen bg-[#0D0F0E] text-[#F2F5F2] flex flex-col justify-between selection:bg-[#C5F36B] selection:text-[#0D0F0E]">
+      {/* Top Header */}
+      <header className="border-b border-[#2B332E] bg-[#0D0F0E]/80 backdrop-blur-md sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+          <BrandLogo size="md" />
 
           <div className="flex items-center gap-3">
-            <Button asChild variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              <Link href="/">Home</Link>
-            </Button>
-            <Button asChild size="sm" className="gap-1.5 rounded-lg shadow-2xs">
-              <Link href="/dashboard">
-                <LayoutDashboard className="h-3.5 w-3.5" />
-                Dashboard
-              </Link>
-            </Button>
+            <Link
+              href="/"
+              className="text-xs font-mono text-[#9BA59E] hover:text-[#F2F5F2] transition-colors"
+            >
+              Home
+            </Link>
+            <Link
+              href="/dashboard"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-md bg-[#C5F36B] text-[#0D0F0E] hover:bg-[#D6FF83] transition-colors shadow-xs"
+            >
+              <LayoutDashboard className="h-3.5 w-3.5" />
+              <span>Dashboard</span>
+            </Link>
           </div>
         </div>
       </header>
 
       {/* Main 404 Hero */}
       <main className="flex-1 flex items-center justify-center px-4 py-16 sm:py-24">
-        <div className="max-w-2xl w-full text-center space-y-8">
+        <div className="max-w-xl w-full text-center space-y-8">
           {/* Badge & Visual Identifier */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border/70 bg-muted/40 text-muted-foreground text-xs font-mono font-medium shadow-2xs">
-            <Terminal className="h-3.5 w-3.5 text-primary" />
-            <span>ERR_404: ROUTE_NOT_FOUND</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#2B332E] bg-[#141715] text-[#9BA59E] text-xs font-mono">
+            <span className="flex h-1.5 w-1.5 rounded-full bg-[#C5F36B]" />
+            <span className="text-[#C5F36B]">ERR_404</span>
+            <span className="text-[#2B332E]">•</span>
+            <span>ROUTE_NOT_FOUND</span>
           </div>
 
           <div className="space-y-3">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-foreground font-sans">
+            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#F2F5F2]">
               Lost in the codebase?
             </h1>
-            <p className="text-base sm:text-lg text-muted-foreground max-w-lg mx-auto leading-relaxed">
-              The page you are looking for doesn&apos;t exist, was moved, or might be temporarily inaccessible.
+            <p className="text-sm sm:text-base text-[#9BA59E] max-w-md mx-auto leading-relaxed font-normal">
+              The page, sandbox, or endpoint you are looking for doesn&apos;t exist, was moved, or
+              is temporarily unavailable.
             </p>
           </div>
 
           {/* Primary Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-            <Button asChild size="lg" className="w-full sm:w-auto h-11 px-6 rounded-xl font-medium gap-2 shadow-sm">
-              <Link href="/dashboard">
-                <LayoutDashboard className="h-4 w-4" />
-                Go to Dashboard
-              </Link>
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="w-full sm:w-auto h-11 px-6 rounded-xl font-medium gap-2 border-border/80 hover:bg-muted/50"
+            <Link
+              href="/dashboard"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-10 px-6 rounded-md bg-[#C5F36B] text-[#0D0F0E] font-semibold text-xs hover:bg-[#D6FF83] transition-colors shadow-xs"
             >
-              <Link href="/">
-                <Home className="h-4 w-4" />
-                Back to Home
-              </Link>
-            </Button>
+              <LayoutDashboard className="h-4 w-4" />
+              <span>Open Dashboard</span>
+            </Link>
+
+            <Link
+              href="/"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-10 px-6 rounded-md bg-[#141715] border border-[#2B332E] text-[#F2F5F2] font-medium text-xs hover:border-[#9BA59E]/60 hover:bg-[#1B201D] transition-colors"
+            >
+              <Home className="h-4 w-4" />
+              <span>Back to Home</span>
+            </Link>
           </div>
 
           {/* Quick Helpful Destinations */}
-          <div className="pt-8 border-t border-border/60 grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
+          <div className="pt-8 border-t border-[#2B332E] grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
             <Link
               href="/dashboard"
-              className="group p-4 rounded-xl border border-border/60 bg-card/60 hover:bg-card hover:border-primary/40 hover:shadow-xs transition-all"
+              className="group p-4 rounded-lg border border-[#2B332E] bg-[#141715] hover:border-[#9BA59E]/50 hover:bg-[#1B201D] transition-all"
             >
-              <div className="flex items-center gap-2 mb-1.5 text-foreground font-medium text-sm">
-                <LayoutDashboard className="h-4 w-4 text-primary" />
+              <div className="flex items-center justify-between mb-1 text-[#F2F5F2] font-semibold text-xs font-mono">
                 <span>Dashboard</span>
+                <ArrowRight className="h-3 w-3 text-[#C5F36B] group-hover:translate-x-0.5 transition-transform" />
               </div>
-              <p className="text-xs text-muted-foreground line-clamp-2">
+              <p className="text-[11px] text-[#9BA59E] line-clamp-2">
                 Manage and resume your cloud development workspaces.
               </p>
             </Link>
 
             <Link
               href="/auth/sign-in"
-              className="group p-4 rounded-xl border border-border/60 bg-card/60 hover:bg-card hover:border-primary/40 hover:shadow-xs transition-all"
+              className="group p-4 rounded-lg border border-[#2B332E] bg-[#141715] hover:border-[#9BA59E]/50 hover:bg-[#1B201D] transition-all"
             >
-              <div className="flex items-center gap-2 mb-1.5 text-foreground font-medium text-sm">
-                <Code2 className="h-4 w-4 text-primary" />
+              <div className="flex items-center justify-between mb-1 text-[#F2F5F2] font-semibold text-xs font-mono">
                 <span>Authentication</span>
+                <ArrowRight className="h-3 w-3 text-[#C5F36B] group-hover:translate-x-0.5 transition-transform" />
               </div>
-              <p className="text-xs text-muted-foreground line-clamp-2">
+              <p className="text-[11px] text-[#9BA59E] line-clamp-2">
                 Sign in to sync your playgrounds and cloud environments.
               </p>
             </Link>
 
             <Link
               href="/"
-              className="group p-4 rounded-xl border border-border/60 bg-card/60 hover:bg-card hover:border-primary/40 hover:shadow-xs transition-all"
+              className="group p-4 rounded-lg border border-[#2B332E] bg-[#141715] hover:border-[#9BA59E]/50 hover:bg-[#1B201D] transition-all"
             >
-              <div className="flex items-center gap-2 mb-1.5 text-foreground font-medium text-sm">
-                <Compass className="h-4 w-4 text-primary" />
-                <span>Explore</span>
+              <div className="flex items-center justify-between mb-1 text-[#F2F5F2] font-semibold text-xs font-mono">
+                <span>Features</span>
+                <ArrowRight className="h-3 w-3 text-[#C5F36B] group-hover:translate-x-0.5 transition-transform" />
               </div>
-              <p className="text-xs text-muted-foreground line-clamp-2">
-                Learn about instant fullstack WebContainers and AI coding.
+              <p className="text-[11px] text-[#9BA59E] line-clamp-2">
+                Learn about in-browser WebContainers and AI assistance.
               </p>
             </Link>
           </div>
@@ -124,13 +114,13 @@ export default function NotFound() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border/40 py-6 text-center text-xs text-muted-foreground">
-        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <footer className="border-t border-[#2B332E] py-5 text-center text-xs font-mono text-[#9BA59E]">
+        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px]">
           <span>© {new Date().getFullYear()} CodeNest. All rights reserved.</span>
           <div className="flex items-center gap-4">
-            <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
-            <Link href="/dashboard" className="hover:text-foreground transition-colors">Workspaces</Link>
-            <Link href="/auth/sign-in" className="hover:text-foreground transition-colors">Sign In</Link>
+            <Link href="/" className="hover:text-[#F2F5F2] transition-colors">Home</Link>
+            <Link href="/dashboard" className="hover:text-[#F2F5F2] transition-colors">Dashboard</Link>
+            <Link href="/auth/sign-in" className="hover:text-[#F2F5F2] transition-colors">Sign in</Link>
           </div>
         </div>
       </footer>

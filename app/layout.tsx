@@ -18,23 +18,24 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "CodeNest - Cloud IDE & Code Editor",
+    default: "CodeNest — Build. Run. Create. Anywhere.",
     template: "%s | CodeNest",
   },
   description:
-    "Next-generation in-browser cloud development environment powered by WebContainers and intelligent code assistance.",
+    "Build, run and experiment with web applications directly in your browser. No complicated setup required.",
+  openGraph: {
+    title: "CodeNest — Build. Run. Create. Anywhere.",
+    description:
+      "Build, run and experiment with web applications directly in your browser. No complicated setup required.",
+    siteName: "CodeNest",
+    type: "website",
+  },
   icons: {
     icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
       { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/logo.svg", type: "image/svg+xml" },
-    ],
-    shortcut: "/favicon.ico",
-    apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
   },
-  manifest: "/site.webmanifest",
 };
 
 export default async function RootLayout({
@@ -52,8 +53,8 @@ export default async function RootLayout({
         >
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
-            enableSystem
+            defaultTheme="dark"
+            enableSystem={false}
             disableTransitionOnChange
           >
             <div className="flex flex-col min-h-screen">

@@ -586,17 +586,19 @@ const PlaygroundEditor = ({
     <div className="h-full relative">
       {/* Loading indicator */}
       {suggestionLoading && (
-        <div className="absolute top-2 right-2 z-10 bg-red-100 dark:bg-red-900 px-2 py-1 rounded text-xs text-red-700 dark:text-red-300 flex items-center gap-1">
-          <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-          AI thinking...
+        <div className="absolute top-2 right-2 z-10 bg-[#141715]/95 border border-[#2B332E] px-2.5 py-1 rounded-md text-[11px] font-mono text-[#C5F36B] flex items-center gap-2 backdrop-blur shadow-lg">
+          <div className="w-1.5 h-1.5 bg-[#C5F36B] rounded-full animate-pulse" />
+          <span>AI thinking...</span>
         </div>
       )}
 
       {/* Active suggestion indicator */}
       {currentSuggestionRef.current && !suggestionLoading && (
-        <div className="absolute top-2 right-2 z-10 bg-green-100 dark:bg-green-900 px-2 py-1 rounded text-xs text-green-700 dark:text-green-300 flex items-center gap-1">
-          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-          Press Tab to accept
+        <div className="absolute top-2 right-2 z-10 bg-[#141715]/95 border border-[#C5F36B]/40 px-2.5 py-1 rounded-md text-[11px] font-mono text-[#F2F5F2] flex items-center gap-2 backdrop-blur shadow-lg">
+          <div className="w-1.5 h-1.5 bg-[#C5F36B] rounded-full" />
+          <span>
+            Press <kbd className="px-1 py-0.5 rounded bg-[#1B201D] border border-[#2B332E] text-[#C5F36B] text-[10px]">Tab</kbd> to accept
+          </span>
         </div>
       )}
 

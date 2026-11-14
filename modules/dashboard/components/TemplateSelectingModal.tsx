@@ -233,16 +233,18 @@ const TemplateSelectionModal = ({
         }
       }}
     >
-      <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto bg-[#141715] border-[#2B332E] text-[#F2F5F2]">
         {step === "select" ? (
           <>
             <DialogHeader>
-              <DialogTitle className="text-2xl font-bold text-[#e93f3f] flex items-center gap-2">
-                <Plus size={24} className="text-[#e93f3f]" />
+              <DialogTitle className="text-xl font-semibold text-[#F2F5F2] flex items-center gap-2">
+                <span className="flex h-6 w-6 items-center justify-center rounded border border-[#2B332E] bg-[#0D0F0E] text-xs font-mono text-[#C5F36B]">
+                  +
+                </span>
                 Select a Template
               </DialogTitle>
-              <DialogDescription>
-                Choose a template to create your new playground
+              <DialogDescription className="text-sm text-[#9BA59E]">
+                Choose an environment template to initialize your workspace
               </DialogDescription>
             </DialogHeader>
 
@@ -250,14 +252,14 @@ const TemplateSelectionModal = ({
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="relative flex-1">
                   <Search
-                    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 outline-none"
-                    size={18}
+                    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#9BA59E] outline-none"
+                    size={16}
                   />
                   <Input
-                    placeholder="Search templates..."
+                    placeholder="Search templates (e.g. React, Next.js, Express)..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-10"
+                    className="pl-9 h-10 bg-[#0D0F0E] border-[#2B332E] text-[#F2F5F2] placeholder:text-[#9BA59E]/50 focus-visible:ring-1 focus-visible:ring-[#C5F36B] focus-visible:border-[#C5F36B]"
                   />
                 </div>
 
@@ -268,11 +270,31 @@ const TemplateSelectionModal = ({
                     setCategory(value as "all" | "frontend" | "backend" | "fullstack")
                   }
                 >
-                  <TabsList className="grid grid-cols-4 w-full sm:w-[400px]">
-                    <TabsTrigger value="all">All</TabsTrigger>
-                    <TabsTrigger value="frontend">Frontend</TabsTrigger>
-                    <TabsTrigger value="backend">Backend</TabsTrigger>
-                    <TabsTrigger value="fullstack">Fullstack</TabsTrigger>
+                  <TabsList className="grid grid-cols-4 w-full sm:w-[380px] bg-[#0D0F0E] border border-[#2B332E] p-1 h-10">
+                    <TabsTrigger
+                      value="all"
+                      className="text-xs text-[#9BA59E] data-[state=active]:bg-[#1B201D] data-[state=active]:text-[#F2F5F2]"
+                    >
+                      All
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="frontend"
+                      className="text-xs text-[#9BA59E] data-[state=active]:bg-[#1B201D] data-[state=active]:text-[#F2F5F2]"
+                    >
+                      Frontend
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="backend"
+                      className="text-xs text-[#9BA59E] data-[state=active]:bg-[#1B201D] data-[state=active]:text-[#F2F5F2]"
+                    >
+                      Backend
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="fullstack"
+                      className="text-xs text-[#9BA59E] data-[state=active]:bg-[#1B201D] data-[state=active]:text-[#F2F5F2]"
+                    >
+                      Fullstack
+                    </TabsTrigger>
                   </TabsList>
                 </Tabs>
               </div>
@@ -281,77 +303,75 @@ const TemplateSelectionModal = ({
                 value={selectedTemplate || ""}
                 onValueChange={handleSelectTemplate}
               >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
                   {filteredTemplates.length > 0 ? (
                     filteredTemplates.map((template) => (
                       <div
                         key={template.id}
-                        className={`relative flex p-6 border rounded-lg cursor-pointer transition-all duration-300 hover:scale-[1.02]
-                            ${
-                              selectedTemplate === template.id
-                                ? "border-[#E93F3F] shadow-[0_0_0_1px_#E93F3F,0_8px_20px_rgba(233,63,63,0.15)]"
-                                : "hover:border-[#E93F3F] shadow-[0_2px_8px_rgba(0,0,0,0.5)] hover:shadow-[0_8px_20px_rgba(0,0,0,1)]"
-                            }
-                            `}
+                        className={`relative flex p-4 sm:p-5 border rounded-lg cursor-pointer transition-all duration-200 bg-[#0D0F0E] ${
+                          selectedTemplate === template.id
+                            ? "border-[#C5F36B] shadow-[0_0_0_1px_#C5F36B,0_0_20px_rgba(197,243,107,0.12)] bg-[#141715]"
+                            : "border-[#2B332E] hover:border-[#9BA59E]/40 hover:bg-[#111412]"
+                        }`}
                         onClick={() => handleSelectTemplate(template.id)}
                       >
-                        <div className="absolute top-4 right-4 flex gap-1">
+                        <div className="absolute top-3.5 right-3.5 flex gap-0.5">
                           {renderStars(template.popularity)}
                         </div>
 
                         {selectedTemplate === template.id && (
-                          <div className="absolute top-2 left-2 bg-[#E93F3F] text-white rounded-full p-1">
-                            <Check size={14} />
+                          <div className="absolute -top-2 -left-2 bg-[#C5F36B] text-[#0D0F0E] rounded-full p-1 shadow-md">
+                            <Check size={12} strokeWidth={3} />
                           </div>
                         )}
 
-                        <div className="flex gap-4">
+                        <div className="flex gap-3.5">
                           <div
-                            className="relative w-16 h-16 flex-shrink-0 flex items-center justify-center rounded-full"
+                            className="relative w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-md border border-[#2B332E]/60"
                             style={{ backgroundColor: `${template.color}15` }}
                           >
                             <Image
                               src={template.icon || "/placeholder.svg"}
                               alt={`${template.name} icon`}
-                              width={40}
-                              height={40}
+                              width={28}
+                              height={28}
                               className="object-contain"
                             />
                           </div>
 
                           <div className="flex flex-col">
                             <div className="flex items-center gap-2 mb-1">
-                              <h3 className="text-lg font-semibold">
+                              <h3 className="text-sm font-semibold text-[#F2F5F2]">
                                 {template.name}
                               </h3>
                               <div className="flex gap-1">
                                 {template.category === "frontend" && (
-                                  <Code size={14} className="text-blue-500" />
+                                  <Code size={13} className="text-[#C5F36B]" />
                                 )}
                                 {template.category === "backend" && (
                                   <Server
-                                    size={14}
-                                    className="text-green-500"
+                                    size={13}
+                                    className="text-[#9BA59E]"
                                   />
                                 )}
                                 {template.category === "fullstack" && (
                                   <Globe
-                                    size={14}
-                                    className="text-purple-500"
+                                    size={13}
+                                    className="text-[#D6FF83]"
                                   />
                                 )}
                               </div>
                             </div>
 
-                            <p className="text-sm text-muted-foreground mb-3">
+                            <p className="text-xs text-[#9BA59E] leading-relaxed mb-3 line-clamp-2">
                               {template.description}
                             </p>
 
-                            <div className="flex flex-wrap gap-2 mt-auto">
+                            <div className="flex flex-wrap gap-1.5 mt-auto">
                               {template.tags.map((tag) => (
                                 <span
                                   key={tag}
-                                  className="text-xs px-2 py-1 border rounded-2xl"
+                                  className="text-[10px] font-mono px-2 py-0.5 border border-[#2B332E] rounded bg-[#141715] text-[#9BA59E]"
                                 >
                                   {tag}
                                 </span>
@@ -368,13 +388,13 @@ const TemplateSelectionModal = ({
                       </div>
                     ))
                   ) : (
-                    <div className="col-span-2 flex flex-col items-center justify-center p-8 text-center">
-                      <Search size={48} className="text-gray-300 mb-4" />
-                      <h3 className="text-lg font-medium">
+                    <div className="col-span-2 flex flex-col items-center justify-center p-8 text-center border border-dashed border-[#2B332E] rounded-lg">
+                      <Search size={32} className="text-[#9BA59E]/50 mb-3" />
+                      <h3 className="text-sm font-medium text-[#F2F5F2]">
                         No templates found
                       </h3>
-                      <p className="text-sm text-muted-foreground">
-                        Try adjusting your search or filters
+                      <p className="text-xs text-[#9BA59E] mt-1">
+                        Try adjusting your search query or category filter
                       </p>
                     </div>
                   )}
@@ -382,24 +402,30 @@ const TemplateSelectionModal = ({
               </RadioGroup>
             </div>
 
-            <div className="flex justify-between gap-3 mt-4 pt-4 border-t">
-              <div className="flex items-center text-sm text-muted-foreground">
-                <Clock size={14} className="mr-1" />
+            <div className="flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-3 mt-4 pt-4 border-t border-[#2B332E]">
+              <div className="flex items-center text-xs text-[#9BA59E]">
+                <Clock size={13} className="mr-1.5 text-[#C5F36B]" />
                 <span>
-                  Estimated setup time:{" "}
-                  {selectedTemplate ? "2-5 minutes" : "Select a template"}
+                  Setup time:{" "}
+                  <strong className="text-[#F2F5F2]">
+                    {selectedTemplate ? "Instant (in-browser)" : "Choose template"}
+                  </strong>
                 </span>
               </div>
-              <div className="flex gap-3">
-                <Button variant="outline" onClick={onClose}>
+              <div className="flex gap-2.5 justify-end">
+                <Button
+                  variant="outline"
+                  onClick={onClose}
+                  className="border-[#2B332E] bg-transparent text-[#9BA59E] hover:text-[#F2F5F2] hover:bg-[#1B201D] h-9 text-xs"
+                >
                   Cancel
                 </Button>
                 <Button
-                  className="bg-[#E93F3F] hover:bg-[#d03636] text-white"
+                  className="bg-[#C5F36B] hover:bg-[#D6FF83] text-[#0D0F0E] font-medium transition-colors h-9 text-xs disabled:opacity-40"
                   disabled={!selectedTemplate}
                   onClick={handleContinue}
                 >
-                  Continue <ChevronRight size={16} className="ml-1" />
+                  Continue <ChevronRight size={14} className="ml-1" />
                 </Button>
               </div>
             </div>
@@ -407,50 +433,58 @@ const TemplateSelectionModal = ({
         ) : (
           <>
             <DialogHeader>
-              <DialogTitle className="text-2xl font-bold text-[#e93f3f]">
-                Configure Your Project
+              <DialogTitle className="text-xl font-semibold text-[#F2F5F2]">
+                Configure Project
               </DialogTitle>
-              <DialogDescription>
-                {templates.find((t) => t.id === selectedTemplate)?.name} project
-                configuration
+              <DialogDescription className="text-sm text-[#9BA59E]">
+                {templates.find((t) => t.id === selectedTemplate)?.name} configuration
               </DialogDescription>
             </DialogHeader>
 
-            <div className="flex flex-col gap-6 py-4">
+            <div className="flex flex-col gap-5 py-4">
               <div className="flex flex-col gap-2">
-                <Label htmlFor="project-name">Project Name</Label>
+                <Label htmlFor="project-name" className="text-xs text-[#9BA59E] font-mono uppercase tracking-wider">
+                  Project Title
+                </Label>
                 <Input
                   id="project-name"
                   placeholder="my-awesome-project"
                   value={projectName}
                   onChange={(e) => setProjectName(e.target.value)}
+                  className="h-10 bg-[#0D0F0E] border-[#2B332E] text-[#F2F5F2] focus-visible:ring-1 focus-visible:ring-[#C5F36B] focus-visible:border-[#C5F36B]"
                 />
               </div>
 
-              <div className="p-4 shadow-[0_0_0_1px_#E93F3F,0_8px_20px_rgba(233,63,63,0.15)] rounded-lg border">
-                <h3 className="font-medium mb-2">Selected Template Features</h3>
+              <div className="p-4 rounded-lg border border-[#2B332E] bg-[#0D0F0E]">
+                <h3 className="text-xs font-mono uppercase tracking-wider text-[#9BA59E] mb-3">
+                  Included Capabilities
+                </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {templates
                     .find((t) => t.id === selectedTemplate)
                     ?.features.map((feature) => (
-                      <div key={feature} className="flex items-center gap-2">
-                        <Zap size={14} className="text-[#E93F3F]" />
-                        <span className="text-sm">{feature}</span>
+                      <div key={feature} className="flex items-center gap-2 text-xs text-[#F2F5F2]">
+                        <Zap size={13} className="text-[#C5F36B] shrink-0" />
+                        <span>{feature}</span>
                       </div>
                     ))}
                 </div>
               </div>
             </div>
 
-            <div className="flex justify-between gap-3 mt-4 pt-4 border-t">
-              <Button variant="outline" onClick={handleBack}>
+            <div className="flex justify-between gap-3 mt-4 pt-4 border-t border-[#2B332E]">
+              <Button
+                variant="outline"
+                onClick={handleBack}
+                className="border-[#2B332E] bg-transparent text-[#9BA59E] hover:text-[#F2F5F2] hover:bg-[#1B201D] h-9 text-xs"
+              >
                 Back
               </Button>
               <Button
-                className="bg-[#E93F3F] hover:bg-[#d03636] text-white"
+                className="bg-[#C5F36B] hover:bg-[#D6FF83] text-[#0D0F0E] font-medium transition-colors h-9 text-xs"
                 onClick={handleCreateProject}
               >
-                Create Project
+                Create Workspace
               </Button>
             </div>
           </>

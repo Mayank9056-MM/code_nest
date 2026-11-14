@@ -3,11 +3,17 @@
  * These routes do not require authentication
  * @type {string[]}
  */
-export const publicRoutes: string[] = ["/"];
+export const publicRoutes: string[] = [
+  "/",
+  "/robots.txt",
+  "/sitemap.xml",
+  "/icon.svg",
+  "/favicon.ico",
+];
 
 /**
- * An array of routes that are protected
- * These routes require authentication
+ * An array of route prefixes that are protected
+ * These routes strictly require authentication
  * @type {string[]}
  */
 export const protectedRoutes: string[] = ["/dashboard", "/playground"];

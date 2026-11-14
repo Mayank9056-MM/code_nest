@@ -1,44 +1,52 @@
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { ArrowDown } from "lucide-react"
-import Image from "next/image"
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { FolderGit2 } from "lucide-react";
+import Image from "next/image";
+import { toast } from "sonner";
 
 const AddRepo = () => {
+  const handleClick = () => {
+    toast.info("GitHub Repository Import: Enter repository URL or select from your GitHub repositories in project settings.");
+  };
+
   return (
     <div
-      className="group px-6 py-6 flex flex-row justify-between items-center border rounded-lg bg-muted cursor-pointer 
-      transition-all duration-300 ease-in-out
-      hover:bg-background hover:border-[#E93F3F] hover:scale-[1.02]
-      shadow-[0_2px_10px_rgba(0,0,0,0.08)]
-      hover:shadow-[0_10px_30px_rgba(233,63,63,0.15)]"
+      onClick={handleClick}
+      className="group px-6 py-5 flex flex-row justify-between items-center border border-[#2B332E] rounded-xl bg-[#141715] hover:bg-[#1B201D] cursor-pointer 
+      transition-all duration-200 ease-in-out
+      hover:border-[#C5F36B]/60 shadow-xs"
     >
       <div className="flex flex-row justify-center items-start gap-4">
         <Button
           variant={"outline"}
-          className="flex justify-center items-center bg-white group-hover:bg-[#fff8f8] group-hover:border-[#E93F3F] group-hover:text-[#E93F3F] transition-colors duration-300"
+          className="flex justify-center items-center bg-[#1B201D] border-[#2B332E] text-[#F2F5F2] group-hover:bg-[#C5F36B] group-hover:text-[#0D0F0E] group-hover:border-[#C5F36B] transition-colors duration-200 rounded-lg"
           size={"icon"}
         >
-          <ArrowDown size={30} className="transition-transform duration-300 group-hover:translate-y-1" />
+          <FolderGit2 size={18} className="transition-transform duration-200 group-hover:scale-105" />
         </Button>
         <div className="flex flex-col">
-          <h1 className="text-xl font-bold text-[#e93f3f]">Open Github Repository</h1>
-          <p className="text-sm text-muted-foreground max-w-[220px]">Work with your repositories in our editor</p>
+          <h1 className="text-base font-semibold text-[#F2F5F2] group-hover:text-[#C5F36B] transition-colors">
+            Open GitHub Repository
+          </h1>
+          <p className="text-xs text-[#9BA59E] max-w-[220px] font-mono">
+            Clone and execute repos in browser
+          </p>
         </div>
       </div>
 
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden opacity-80 group-hover:opacity-100 transition-opacity">
         <Image
           src={"/github.svg"}
           alt="Open GitHub repository"
-          width={150}
-          height={150}
-          className="transition-transform duration-300 group-hover:scale-110"
+          width={120}
+          height={120}
+          className="transition-transform duration-300 group-hover:scale-105"
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AddRepo
-
-
+export default AddRepo;

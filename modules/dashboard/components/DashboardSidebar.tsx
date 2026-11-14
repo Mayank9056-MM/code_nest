@@ -47,6 +47,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useCurrentUser } from "@/modules/auth/hooks/use-current-user";
 import LogoutButton from "@/modules/auth/components/logout-button";
+import { BrandMark } from "@/modules/home/components/BrandLogo";
 
 // Define the interface for a single playground item, icon is now a string
 interface PlaygroundData {
@@ -80,16 +81,15 @@ export function DashboardSidebar({
 
   return (
     <Sidebar variant="inset" collapsible="icon" className="border-1 border-r">
-      <SidebarHeader className="border-b border-border/50 py-3 px-3">
+      <SidebarHeader className="border-b border-[#2B332E] py-3 px-3">
         <Link href="/" className="flex items-center gap-2.5 px-2 group">
-          <div className="flex items-center justify-center h-8 w-8 rounded-xl bg-card border border-border shadow-xs group-hover:scale-105 transition-transform shrink-0">
-            <Image src="/logo.svg" alt="CodeNest Logo" height={22} width={22} className="object-contain" />
-          </div>
+          <BrandMark size="sm" />
           <div className="flex flex-col group-data-[collapsible=icon]:hidden">
-            <span className="font-bold text-sm tracking-tight text-foreground leading-tight">
-              Code<span className="text-primary font-semibold">Nest</span>
+            <span className="font-semibold text-sm tracking-tight text-[#F2F5F2] leading-tight flex items-center gap-0.5">
+              <span>CodeNest</span>
+              <span className="text-[#C5F36B] font-bold">.</span>
             </span>
-            <span className="text-[10px] text-muted-foreground font-medium">Cloud IDE</span>
+            <span className="text-[10px] font-mono text-[#9BA59E]">Cloud IDE</span>
           </div>
         </Link>
       </SidebarHeader>
@@ -218,9 +218,9 @@ export function DashboardSidebar({
                     size="lg"
                     className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground cursor-pointer"
                   >
-                    <Avatar className="h-8 w-8 rounded-lg">
+                    <Avatar className="h-8 w-8 rounded-lg border border-[#2B332E]">
                       <AvatarImage src={user.image ?? undefined} alt={user.name ?? "User"} />
-                      <AvatarFallback className="rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 font-semibold text-xs">
+                      <AvatarFallback className="rounded-lg bg-[#C5F36B]/15 text-[#C5F36B] font-mono font-semibold text-xs">
                         {(user.name || user.email || "U").slice(0, 2).toUpperCase()}
                       </AvatarFallback>
                     </Avatar>
@@ -232,15 +232,15 @@ export function DashboardSidebar({
                   </SidebarMenuButton>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
-                  className="w-56 rounded-lg p-1.5 shadow-lg"
+                  className="w-56 rounded-lg p-1.5 shadow-xl bg-[#141715] border-[#2B332E] text-[#F2F5F2]"
                   side="right"
                   align="end"
                   sideOffset={4}
                 >
                   <div className="flex items-center gap-2 p-2">
-                    <Avatar className="h-8 w-8 rounded-lg">
+                    <Avatar className="h-8 w-8 rounded-lg border border-[#2B332E]">
                       <AvatarImage src={user.image ?? undefined} alt={user.name ?? "User"} />
-                      <AvatarFallback className="rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 font-semibold text-xs">
+                      <AvatarFallback className="rounded-lg bg-[#C5F36B]/15 text-[#C5F36B] font-mono font-semibold text-xs">
                         {(user.name || user.email || "U").slice(0, 2).toUpperCase()}
                       </AvatarFallback>
                     </Avatar>
@@ -249,22 +249,22 @@ export function DashboardSidebar({
                       <span className="truncate text-xs text-muted-foreground">{user.email}</span>
                     </div>
                   </div>
-                  <DropdownMenuSeparator />
+                  <DropdownMenuSeparator className="bg-[#2B332E]" />
                   <DropdownMenuItem asChild>
-                    <Link href="/" className="flex items-center gap-2 cursor-pointer">
-                      <Home className="h-4 w-4 text-muted-foreground" />
+                    <Link href="/" className="flex items-center gap-2 cursor-pointer focus:bg-[#1B201D] focus:text-[#F2F5F2]">
+                      <Home className="h-4 w-4 text-[#9BA59E]" />
                       <span>Home</span>
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <Link href="/dashboard" className="flex items-center gap-2 cursor-pointer">
-                      <LayoutDashboard className="h-4 w-4 text-muted-foreground" />
+                    <Link href="/dashboard" className="flex items-center gap-2 cursor-pointer focus:bg-[#1B201D] focus:text-[#F2F5F2]">
+                      <LayoutDashboard className="h-4 w-4 text-[#9BA59E]" />
                       <span>Dashboard</span>
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuSeparator />
+                  <DropdownMenuSeparator className="bg-[#2B332E]" />
                   <LogoutButton>
-                    <DropdownMenuItem className="text-rose-600 dark:text-rose-400 focus:text-rose-600 focus:bg-rose-50 dark:focus:bg-rose-950/30 cursor-pointer w-full">
+                    <DropdownMenuItem className="text-red-400 focus:text-red-300 focus:bg-red-500/10 cursor-pointer w-full">
                       <LogOut className="h-4 w-4 mr-2" />
                       <span>Log Out</span>
                     </DropdownMenuItem>

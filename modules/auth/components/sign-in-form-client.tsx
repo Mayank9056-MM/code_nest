@@ -1,7 +1,6 @@
 "use client";
 
 import React, { Suspense, useState } from "react";
-import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { AlertCircle, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -14,6 +13,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { signIn } from "next-auth/react";
+import { BrandMark } from "@/modules/home/components/BrandLogo";
 
 function SignInContent() {
   const searchParams = useSearchParams();
@@ -53,25 +53,19 @@ function SignInContent() {
   const errorMessage = getUserFriendlyErrorMessage();
 
   return (
-    <Card className="w-full border-border bg-card shadow-lg rounded-2xl overflow-hidden">
+    <Card className="w-full border-[#2B332E] bg-[#141715] text-[#F2F5F2] shadow-2xl rounded-xl overflow-hidden">
       <CardHeader className="space-y-3 text-center pb-6">
         {/* Brand Logo */}
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-card border border-border shadow-xs">
-          <Image
-            src="/logo.svg"
-            alt="CodeNest Logo"
-            width={34}
-            height={34}
-            className="object-contain"
-            priority
-          />
+        <div className="flex justify-center">
+          <BrandMark size="lg" />
         </div>
 
         <div>
-          <CardTitle className="text-2xl font-bold tracking-tight text-foreground">
-            Welcome to Code<span className="text-primary font-semibold">Nest</span>
+          <CardTitle className="text-xl font-bold tracking-tight text-[#F2F5F2] flex items-center justify-center gap-1">
+            <span>Welcome to CodeNest</span>
+            <span className="text-[#C5F36B]">.</span>
           </CardTitle>
-          <CardDescription className="text-xs sm:text-sm text-muted-foreground mt-1">
+          <CardDescription className="text-xs text-[#9BA59E] mt-1 font-mono">
             Sign in to access your cloud playgrounds and editor
           </CardDescription>
         </div>
@@ -79,7 +73,7 @@ function SignInContent() {
 
       <CardContent className="grid gap-3 px-6">
         {errorMessage && (
-          <div className="flex items-start gap-2.5 p-3 rounded-xl bg-destructive/10 border border-destructive/20 text-destructive text-xs leading-relaxed animate-in fade-in">
+          <div className="flex items-start gap-2.5 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-xs leading-relaxed animate-in fade-in">
             <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />
             <span>{errorMessage}</span>
           </div>
@@ -90,10 +84,10 @@ function SignInContent() {
           variant="outline"
           onClick={() => onSignIn("google")}
           disabled={loadingProvider !== null}
-          className="w-full h-11 font-medium gap-3 rounded-xl border-border hover:bg-accent hover:border-border transition-all cursor-pointer shadow-xs"
+          className="w-full h-10 font-mono text-xs font-medium gap-3 rounded-md bg-[#0D0F0E] border-[#2B332E] text-[#F2F5F2] hover:bg-[#1B201D] hover:border-[#9BA59E]/60 transition-all cursor-pointer shadow-xs"
         >
           {loadingProvider === "google" ? (
-            <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
+            <Loader2 className="h-4 w-4 animate-spin text-[#9BA59E]" />
           ) : (
             <svg className="h-4 w-4" viewBox="0 0 24 24">
               <path
@@ -124,12 +118,12 @@ function SignInContent() {
           variant="outline"
           onClick={() => onSignIn("github")}
           disabled={loadingProvider !== null}
-          className="w-full h-11 font-medium gap-3 rounded-xl border-border hover:bg-accent hover:border-border transition-all cursor-pointer shadow-xs"
+          className="w-full h-10 font-mono text-xs font-medium gap-3 rounded-md bg-[#0D0F0E] border-[#2B332E] text-[#F2F5F2] hover:bg-[#1B201D] hover:border-[#9BA59E]/60 transition-all cursor-pointer shadow-xs"
         >
           {loadingProvider === "github" ? (
-            <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
+            <Loader2 className="h-4 w-4 animate-spin text-[#9BA59E]" />
           ) : (
-            <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
+            <svg className="h-4 w-4 fill-current text-[#F2F5F2]" viewBox="0 0 24 24">
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -144,7 +138,7 @@ function SignInContent() {
       </CardContent>
 
       <CardFooter className="pt-2 pb-6 px-6">
-        <p className="text-xs text-center text-muted-foreground w-full leading-relaxed">
+        <p className="text-[11px] font-mono text-center text-[#9BA59E]/70 w-full leading-relaxed">
           By signing in, you agree to our terms of service and privacy policy.
         </p>
       </CardFooter>

@@ -1,52 +1,44 @@
-
-import { Loader2 } from "lucide-react";
+import { Check, Loader2 } from "lucide-react";
 import { type LoadingStepProps } from "../types";
 
 export const LoadingStep: React.FC<LoadingStepProps> = ({
   currentStep,
   step,
   label,
-}) => (
-  <div className="flex items-center gap-2 mb-2 justify-center h-screen">
-    <div
-      className={`rounded-full p-1 ${
-        currentStep === step
-          ? "bg-red-100"
-          : currentStep > step
-          ? "bg-green-100"
-          : "bg-gray-100"
-      }`}
-    >
-      {currentStep > step ? (
-        <svg
-          className="h-4 w-4 text-green-500"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M5 13l4 4L19 7"
-          />
-        </svg>
-      ) : currentStep === step ? (
-        <Loader2 className="h-4 w-4 text-red-500 animate-spin" />
-      ) : (
-        <div className="h-4 w-4 rounded-full bg-gray-300" />
-      )}
+}) => {
+  const isDone = currentStep > step;
+  const isActive = currentStep === step;
+
+  return (
+    <div className="flex items-center gap-3 py-2 px-1">
+      <div
+        className={`flex h-6 w-6 items-center justify-center rounded-full border transition-colors ${
+          isActive
+            ? "border-[#C5F36B] bg-[#C5F36B]/15 text-[#C5F36B]"
+            : isDone
+            ? "border-[#C5F36B]/50 bg-[#C5F36B]/10 text-[#C5F36B]"
+            : "border-[#2B332E] bg-[#1B201D] text-[#9BA59E]"
+        }`}
+      >
+        {isDone ? (
+          <Check className="h-3.5 w-3.5 stroke-[2.5]" />
+        ) : isActive ? (
+          <Loader2 className="h-3.5 w-3.5 animate-spin" />
+        ) : (
+          <div className="h-1.5 w-1.5 rounded-full bg-[#9BA59E]/40" />
+        )}
+      </div>
+      <span
+        className={`text-xs font-mono transition-colors ${
+          isActive
+            ? "text-[#C5F36B] font-medium"
+            : isDone
+            ? "text-[#F2F5F2]"
+            : "text-[#9BA59E]"
+        }`}
+      >
+        {label}
+      </span>
     </div>
-    <span
-      className={`text-sm ${
-        currentStep === step
-          ? "text-red-600 font-medium"
-          : currentStep > step
-          ? "text-green-600"
-          : "text-gray-500"
-      }`}
-    >
-      {label}
-    </span>
-  </div>
-);
+  );
+};

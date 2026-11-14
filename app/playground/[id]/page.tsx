@@ -31,6 +31,7 @@ import { useFileExplorer } from "@/modules/playground/hooks/useFileExplorer";
 import { usePlayground } from "@/modules/playground/hooks/usePlayground";
 import { findFilePath } from "@/modules/playground/lib";
 import UserButton from "@/modules/auth/components/user-button";
+import { BrandMark } from "@/modules/home/components/BrandLogo";
 import {
   TemplateFile,
   TemplateFolder,
@@ -48,7 +49,6 @@ import {
   Settings,
   X,
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useCallback, useEffect, useRef, useState } from "react";
@@ -295,28 +295,21 @@ const MainPlaygroundPage = () => {
   // Error state
   if (error) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] p-6 bg-background text-foreground">
-        <div className="max-w-md w-full p-8 rounded-2xl border border-border bg-card shadow-lg text-center space-y-6">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-card border border-border shadow-2xs">
-            <Image
-              src="/logo.svg"
-              alt="CodeNest Logo"
-              width={32}
-              height={32}
-              className="object-contain"
-              priority
-            />
+      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] p-6 bg-[#0D0F0E] text-[#F2F5F2]">
+        <div className="max-w-md w-full p-8 rounded-xl border border-[#2B332E] bg-[#141715] shadow-2xl text-center space-y-6">
+          <div className="flex justify-center">
+            <BrandMark size="lg" />
           </div>
 
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-destructive/10 text-destructive text-xs font-medium">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-mono">
               <AlertCircle className="h-3.5 w-3.5" />
               <span>Workspace Unavailable</span>
             </div>
-            <h2 className="text-xl font-bold tracking-tight text-foreground">
+            <h2 className="text-xl font-bold tracking-tight text-[#F2F5F2]">
               Unable to Load Project
             </h2>
-            <p className="text-sm text-muted-foreground leading-relaxed">
+            <p className="text-xs text-[#9BA59E] leading-relaxed">
               We couldn&apos;t load the workspace files for this project. The project might have been moved or the database service is currently unreachable.
             </p>
           </div>
@@ -324,19 +317,19 @@ const MainPlaygroundPage = () => {
           <div className="flex flex-col sm:flex-row gap-2.5 pt-2">
             <Button
               onClick={() => window.location.reload()}
-              className="w-full h-10 font-medium gap-2 rounded-xl"
+              className="w-full h-10 font-mono text-xs font-semibold gap-2 rounded-md bg-[#C5F36B] text-[#0D0F0E] hover:bg-[#D6FF83]"
             >
-              <RefreshCw className="h-4 w-4" />
-              Try Again
+              <RefreshCw className="h-3.5 w-3.5" />
+              <span>Try Again</span>
             </Button>
             <Button
               asChild
               variant="outline"
-              className="w-full h-10 font-medium gap-2 rounded-xl border-border hover:bg-accent"
+              className="w-full h-10 font-mono text-xs font-medium gap-2 rounded-md border-[#2B332E] bg-[#0D0F0E] text-[#F2F5F2] hover:bg-[#1B201D]"
             >
               <Link href="/dashboard">
-                <LayoutDashboard className="h-4 w-4" />
-                Dashboard
+                <LayoutDashboard className="h-3.5 w-3.5" />
+                <span>Dashboard</span>
               </Link>
             </Button>
           </div>
@@ -348,19 +341,11 @@ const MainPlaygroundPage = () => {
   // Loading state
   if (isLoading) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] p-6 bg-background text-foreground">
-        <div className="w-full max-w-md p-8 rounded-2xl border border-border bg-card shadow-lg">
+      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] p-6 bg-[#0D0F0E] text-[#F2F5F2]">
+        <div className="w-full max-w-md p-8 rounded-xl border border-[#2B332E] bg-[#141715] shadow-2xl">
           <div className="flex items-center justify-center gap-2 mb-6">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-card border border-border">
-              <Image
-                src="/logo.svg"
-                alt="CodeNest Logo"
-                width={18}
-                height={18}
-                className="object-contain"
-              />
-            </div>
-            <h2 className="text-base font-semibold tracking-tight">
+            <BrandMark size="sm" />
+            <h2 className="text-sm font-mono font-semibold tracking-tight text-[#F2F5F2]">
               Initializing Workspace
             </h2>
           </div>
@@ -387,37 +372,41 @@ const MainPlaygroundPage = () => {
   // No template data
   if (!templateData) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] p-6 bg-background text-foreground">
-        <div className="max-w-md w-full p-8 rounded-2xl border border-border bg-card shadow-lg text-center space-y-6">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-500">
-            <FolderOpen className="h-7 w-7" />
+      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] p-6 bg-[#0D0F0E] text-[#F2F5F2]">
+        <div className="max-w-md w-full p-8 rounded-xl border border-[#2B332E] bg-[#141715] shadow-2xl text-center space-y-6">
+          <div className="flex justify-center">
+            <BrandMark size="lg" />
           </div>
 
           <div className="space-y-2">
-            <h2 className="text-xl font-bold tracking-tight text-foreground">
-              No Files Found
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-mono">
+              <FolderOpen className="h-3.5 w-3.5" />
+              <span>No Files Detected</span>
+            </div>
+            <h2 className="text-xl font-bold tracking-tight text-[#F2F5F2]">
+              Empty Workspace
             </h2>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              No template files were detected in this workspace. You can re-attempt loading or return to the dashboard to select another template.
+            <p className="text-xs text-[#9BA59E] leading-relaxed">
+              No template files were detected in this workspace. You can re-attempt initialization or return to the dashboard to select another template.
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-2.5 pt-2">
             <Button
               onClick={() => window.location.reload()}
-              className="w-full h-10 font-medium gap-2 rounded-xl"
+              className="w-full h-10 font-mono text-xs font-semibold gap-2 rounded-md bg-[#C5F36B] text-[#0D0F0E] hover:bg-[#D6FF83]"
             >
-              <RefreshCw className="h-4 w-4" />
-              Reload Workspace
+              <RefreshCw className="h-3.5 w-3.5" />
+              <span>Reload Workspace</span>
             </Button>
             <Button
               asChild
               variant="outline"
-              className="w-full h-10 font-medium gap-2 rounded-xl border-border hover:bg-accent"
+              className="w-full h-10 font-mono text-xs font-medium gap-2 rounded-md border-[#2B332E] bg-[#0D0F0E] text-[#F2F5F2] hover:bg-[#1B201D]"
             >
               <Link href="/dashboard">
-                <LayoutDashboard className="h-4 w-4" />
-                Dashboard
+                <LayoutDashboard className="h-3.5 w-3.5" />
+                <span>Dashboard</span>
               </Link>
             </Button>
           </div>

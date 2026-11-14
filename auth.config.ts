@@ -15,5 +15,10 @@ export default {
       allowDangerousEmailAccountLinking: true,
     }),
   ],
-  secret: process.env.AUTH_SECRET,
+  session: { strategy: "jwt" },
+  pages: {
+    signIn: "/auth/sign-in",
+    error: "/auth/error",
+  },
+  secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET,
 } satisfies NextAuthConfig;

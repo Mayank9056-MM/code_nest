@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { auth } from "@/auth";
 import { type NextRequest, NextResponse } from "next/server";
 
 interface CodeSuggestionRequest {
@@ -24,6 +25,11 @@ interface CodeContext {
 
 export async function POST(request: NextRequest) {
   try {
+    const session = await auth();
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const body: CodeSuggestionRequest = await request.json();
 
     const { fileContent, cursorLine, cursorColumn, suggestionType, fileName } =

@@ -1,11 +1,9 @@
 "use client";
 
 import React, { Suspense } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { AlertCircle, ArrowLeft, RefreshCw } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardDescription,
@@ -13,6 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { BrandMark } from "@/modules/home/components/BrandLogo";
 
 function AuthErrorContent() {
   const searchParams = useSearchParams();
@@ -64,47 +63,42 @@ function AuthErrorContent() {
   const { title, description } = getErrorMessage();
 
   return (
-    <Card className="w-full border-border bg-card shadow-lg rounded-2xl overflow-hidden">
+    <Card className="w-full border-[#2B332E] bg-[#141715] text-[#F2F5F2] shadow-2xl rounded-xl overflow-hidden">
       <CardHeader className="space-y-3 text-center pb-6">
         {/* Brand Logo */}
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-card border border-border shadow-xs">
-          <Image
-            src="/logo.svg"
-            alt="CodeNest Logo"
-            width={34}
-            height={34}
-            className="object-contain"
-            priority
-          />
+        <div className="flex justify-center">
+          <BrandMark size="lg" />
         </div>
 
         <div className="flex items-center justify-center gap-2 pt-2">
-          <div className="p-1.5 rounded-full bg-destructive/10 text-destructive">
-            <AlertCircle className="h-5 w-5" />
+          <div className="p-1 rounded-full bg-red-500/10 text-red-400">
+            <AlertCircle className="h-4 w-4" />
           </div>
-          <CardTitle className="text-xl font-bold tracking-tight text-foreground">
+          <CardTitle className="text-lg font-bold tracking-tight text-[#F2F5F2]">
             {title}
           </CardTitle>
         </div>
 
-        <CardDescription className="text-xs sm:text-sm text-muted-foreground max-w-sm mx-auto leading-relaxed">
+        <CardDescription className="text-xs font-mono text-[#9BA59E] max-w-sm mx-auto leading-relaxed">
           {description}
         </CardDescription>
       </CardHeader>
 
       <CardFooter className="flex flex-col sm:flex-row gap-2.5 px-6 pt-2 pb-6">
-        <Button asChild className="w-full h-10 font-medium gap-2 rounded-xl">
-          <Link href="/auth/sign-in">
-            <RefreshCw className="h-4 w-4" />
-            Try Again
-          </Link>
-        </Button>
-        <Button asChild variant="outline" className="w-full h-10 font-medium gap-2 rounded-xl border-border hover:bg-accent">
-          <Link href="/">
-            <ArrowLeft className="h-4 w-4" />
-            Back to Home
-          </Link>
-        </Button>
+        <Link
+          href="/auth/sign-in"
+          className="w-full h-10 font-mono text-xs font-semibold gap-2 rounded-md bg-[#C5F36B] text-[#0D0F0E] hover:bg-[#D6FF83] transition-colors inline-flex items-center justify-center shadow-xs"
+        >
+          <RefreshCw className="h-3.5 w-3.5" />
+          <span>Try Again</span>
+        </Link>
+        <Link
+          href="/"
+          className="w-full h-10 font-mono text-xs font-medium gap-2 rounded-md bg-[#0D0F0E] border border-[#2B332E] text-[#F2F5F2] hover:bg-[#1B201D] hover:border-[#9BA59E]/50 transition-colors inline-flex items-center justify-center"
+        >
+          <ArrowLeft className="h-3.5 w-3.5" />
+          <span>Back to Home</span>
+        </Link>
       </CardFooter>
     </Card>
   );

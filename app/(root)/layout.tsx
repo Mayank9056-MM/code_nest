@@ -1,34 +1,26 @@
-import { cn } from "@/lib/utils"
-import Footer from "@/modules/home/footer"
-import Header from "@/modules/home/header"
-import { Metadata } from "next"
-
+import React from "react";
+import { Navbar } from "@/modules/home/components/Navbar";
+import { Footer } from "@/modules/home/components/Footer";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: {
-    template: "%s | CodeNest",
-    default: "CodeNest - Cloud IDE & Code Editor",
+  title: "CodeNest — In-Browser Cloud IDE & Code Editor",
+  description:
+    "Build, run and experiment with web applications directly in your browser. Powered by WebContainers, Monaco Editor, and intelligent code assistance.",
+  openGraph: {
+    title: "CodeNest — In-Browser Cloud IDE & Code Editor",
+    description: "Build, run and experiment with web applications directly in your browser.",
+    type: "website",
+    siteName: "CodeNest",
   },
 };
 
-export default function HomeLayout({children}: {children: React.ReactNode}){
-     return (
-        <>
-        <Header />
-                  <div
-        className={cn(
-          "absolute inset-0",
-          "[background-size:40px_40px]",
-          "[background-image:linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)]",
-          "dark:[background-image:linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)]",
-        )}
-      />
-       <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black"/>
-      
-            <main className="z-20 relative w-full pt-0 md:pt-0  ">
-            {children}
-          </main>
-        <Footer />
-        </>
-     )
+export default function HomeLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="min-h-screen bg-[#0D0F0E] text-[#F2F5F2] flex flex-col selection:bg-[#C5F36B] selection:text-[#0D0F0E]">
+      <Navbar />
+      <main className="flex-1 w-full">{children}</main>
+      <Footer />
+    </div>
+  );
 }

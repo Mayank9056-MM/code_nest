@@ -31,36 +31,38 @@ const AddNewButton = () => {
     <>
       <div
         onClick={() => setIsModalOpen(true)}
-        className="group px-6 py-6 flex flex-row justify-between items-center border border-border rounded-xl bg-card hover:bg-accent/40 cursor-pointer 
+        className="group px-6 py-5 flex flex-row justify-between items-center border border-[#2B332E] rounded-xl bg-[#141715] hover:bg-[#1B201D] cursor-pointer 
         transition-all duration-200 ease-in-out
-        hover:border-primary/40 hover:shadow-sm"
+        hover:border-[#C5F36B]/60 shadow-xs"
       >
         <div className="flex flex-row justify-center items-start gap-4">
           <Button
             variant={"outline"}
-            className="flex justify-center items-center bg-muted/60 border-border group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-colors duration-200"
+            className="flex justify-center items-center bg-[#1B201D] border-[#2B332E] text-[#F2F5F2] group-hover:bg-[#C5F36B] group-hover:text-[#0D0F0E] group-hover:border-[#C5F36B] transition-colors duration-200 rounded-lg"
             size={"icon"}
           >
             <Plus
-              size={20}
+              size={18}
               className="transition-transform duration-200 group-hover:rotate-90"
             />
           </Button>
           <div className="flex flex-col">
-            <h1 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">Add New</h1>
-            <p className="text-sm text-muted-foreground max-w-[220px]">
-              Create a new playground
+            <h1 className="text-base font-semibold text-[#F2F5F2] group-hover:text-[#C5F36B] transition-colors">
+              New Playground
+            </h1>
+            <p className="text-xs text-[#9BA59E] max-w-[220px] font-mono">
+              Create sandbox from template
             </p>
           </div>
         </div>
 
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden opacity-80 group-hover:opacity-100 transition-opacity">
           <Image
             src={"/add-new.svg"}
             alt="Create new playground"
-            width={150}
-            height={150}
-            className="transition-transform duration-300 group-hover:scale-110"
+            width={120}
+            height={120}
+            className="transition-transform duration-300 group-hover:scale-105"
           />
         </div>
       </div>
