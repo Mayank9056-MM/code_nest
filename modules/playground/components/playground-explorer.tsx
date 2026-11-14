@@ -139,11 +139,11 @@ export function TemplateFileTree({
     <Sidebar>
       <SidebarHeader className="border-b border-border/50 px-3 py-2.5">
         <Link href="/dashboard" className="flex items-center gap-2 group">
-          <div className="flex items-center justify-center h-7 w-7 rounded-lg bg-card border border-border shadow-xs group-hover:scale-105 transition-transform">
-            <Image src="/logo.svg" alt="CodeNest Logo" width={18} height={18} className="object-contain" />
+          <div className="flex items-center justify-center h-7 w-7 rounded-lg bg-[#141715] border border-[#2B332E] shadow-xs group-hover:scale-105 transition-transform p-1">
+            <Image src="/codenest-logo-icon.svg" alt="CodeNest Logo" width={18} height={18} className="object-contain" />
           </div>
-          <span className="text-sm font-bold tracking-tight text-foreground">
-            Code<span className="text-primary font-semibold">Nest</span>
+          <span className="text-sm font-semibold tracking-tight text-[#F2F5F2]">
+            Code<span className="text-[#C5F36B] font-bold">Nest</span>
           </span>
         </Link>
       </SidebarHeader>

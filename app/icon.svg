@@ -1,38 +1,8 @@
-<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <radialGradient id="codenest-glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#C5F36B" stop-opacity="0.18" />
-      <stop offset="100%" stop-color="#C5F36B" stop-opacity="0" />
-    </radialGradient>
-  </defs>
-
-  <!-- Container -->
-  <rect width="512" height="512" rx="128" fill="#0D0F0E"/>
-  <rect x="2" y="2" width="508" height="508" rx="126" stroke="#2B332E" stroke-width="4"/>
-
-  <!-- Radial accent glow -->
-  <circle cx="256" cy="256" r="200" fill="url(#codenest-glow)"/>
-
-  <!-- Inner Surface Card -->
-  <rect x="72" y="72" width="368" height="368" rx="72" fill="#141715" stroke="#2B332E" stroke-width="2"/>
-
-  <!-- Terminal Prompt Chevron '>' -->
-  <path 
-    d="M 180 176 L 268 256 L 180 336" 
-    stroke="#C5F36B" 
-    stroke-width="36" 
-    stroke-linecap="round" 
-    stroke-linejoin="round"
-  />
-
-  <!-- Terminal Cursor Underscore '_' -->
-  <line 
-    x1="288" 
-    y1="336" 
-    x2="352" 
-    y2="336" 
-    stroke="#F2F5F2" 
-    stroke-width="36" 
-    stroke-linecap="round"
-  />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="CodeNest">
+  <title>CodeNest</title>
+  <rect width="512" height="512" fill="#0D0F0E"/>
+  <g transform="translate(96 96) scale(1.3333333)">
+    <path fill="#F2F5F2" d="M240 0 H0 V240 H240 V216 H24 V24 H240 Z M216 48 H48 V192 H216 V168 H72 V72 H216 Z"/>
+    <path fill="#C5F36B" d="M96 96 H144 V144 H96 Z"/>
+  </g>
 </svg>

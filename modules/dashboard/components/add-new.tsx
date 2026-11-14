@@ -56,12 +56,12 @@ const AddNewButton = () => {
           </div>
         </div>
 
-        <div className="relative overflow-hidden opacity-80 group-hover:opacity-100 transition-opacity">
+        <div className="relative flex items-center justify-center p-2.5 rounded-xl border border-[#2B332E] bg-[#0D0F0E] opacity-90 group-hover:opacity-100 group-hover:border-[#C5F36B]/40 transition-all">
           <Image
-            src={"/add-new.svg"}
-            alt="Create new playground"
-            width={120}
-            height={120}
+            src="/codenest-logo-icon.svg"
+            alt="CodeNest Playground"
+            width={52}
+            height={52}
             className="transition-transform duration-300 group-hover:scale-105"
           />
         </div>

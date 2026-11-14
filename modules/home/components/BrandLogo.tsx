@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface BrandLogoProps {
@@ -17,7 +18,7 @@ export function BrandMark({ size = "md", className }: { size?: "sm" | "md" | "lg
   };
 
   const svgSizes = {
-    sm: 16,
+    sm: 15,
     md: 18,
     lg: 22,
   };
@@ -25,7 +26,7 @@ export function BrandMark({ size = "md", className }: { size?: "sm" | "md" | "lg
   return (
     <div
       className={cn(
-        "relative flex items-center justify-center bg-[#141715] border border-[#2B332E] text-[#C5F36B] shadow-xs shrink-0 select-none",
+        "relative flex items-center justify-center bg-[#141715] border border-[#2B332E] shadow-xs shrink-0 select-none",
         sizeClasses[size],
         className
       )}
@@ -34,28 +35,48 @@ export function BrandMark({ size = "md", className }: { size?: "sm" | "md" | "lg
       <svg
         width={svgSizes[size]}
         height={svgSizes[size]}
-        viewBox="0 0 24 24"
+        viewBox="0 0 240 240"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="transition-transform group-hover:scale-105"
+        className="transition-transform duration-200 group-hover:scale-105 shrink-0"
       >
-        {/* Terminal chevron prompt */}
         <path
-          d="M5 7L10 12L5 17"
-          stroke="currentColor"
-          strokeWidth="2.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+          fill="#F2F5F2"
+          d="M240 0 H0 V240 H240 V216 H24 V24 H240 Z M216 48 H48 V192 H216 V168 H72 V72 H216 Z"
         />
-        {/* Terminal cursor block */}
-        <path
-          d="M13 17H19"
-          stroke="currentColor"
-          strokeWidth="2.4"
-          strokeLinecap="round"
-        />
+        <path fill="#C5F36B" d="M96 96 H144 V144 H96 Z" />
       </svg>
     </div>
+  );
+}
+
+export function BrandLogoImage({
+  width = 140,
+  height = 42,
+  className,
+  variant = "primary",
+}: {
+  width?: number;
+  height?: number;
+  className?: string;
+  variant?: "primary" | "white" | "stacked" | "icon";
+}) {
+  const srcMap = {
+    primary: "/codenest-logo-primary.svg",
+    white: "/codenest-logo-white.svg",
+    stacked: "/codenest-logo-stacked.svg",
+    icon: "/codenest-logo-icon.svg",
+  };
+
+  return (
+    <Image
+      src={srcMap[variant]}
+      alt="CodeNest Logo"
+      width={width}
+      height={height}
+      className={cn("object-contain", className)}
+      priority
+    />
   );
 }
 

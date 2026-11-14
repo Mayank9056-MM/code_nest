@@ -1,12 +1,17 @@
 {
-  "name": "CodeNest Cloud IDE",
+  "name": "CodeNest",
   "short_name": "CodeNest",
-  "description": "Next-generation cloud development environment and AI-powered in-browser code editor",
+  "description": "Build, run and experiment with web applications directly in your browser. No complicated setup required.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#09090B",
-  "theme_color": "#4F46E5",
+  "background_color": "#0D0F0E",
+  "theme_color": "#C5F36B",
   "icons": [
+    {
+      "src": "/codenest-favicon-180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
     {
       "src": "/icon-192.png",
       "sizes": "192x192",

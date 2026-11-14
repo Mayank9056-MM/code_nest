@@ -7,11 +7,11 @@ const EmptyState = () => {
       <div className="relative mb-6">
         <div className="absolute -inset-4 bg-[#C5F36B]/5 rounded-full blur-xl pointer-events-none" />
         <Image
-          src="/empty-state.svg"
-          alt="No projects found"
-          width={180}
-          height={180}
-          className="relative w-40 h-40 object-contain transition-transform duration-300 hover:scale-105 opacity-80"
+          src="/codenest-logo-stacked.svg"
+          alt="CodeNest - No projects yet"
+          width={140}
+          height={140}
+          className="relative w-32 h-32 object-contain transition-transform duration-300 hover:scale-105 opacity-85"
         />
       </div>
       <h2 className="text-lg font-semibold text-[#F2F5F2]">No projects yet</h2>
