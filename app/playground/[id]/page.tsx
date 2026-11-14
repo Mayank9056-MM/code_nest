@@ -30,6 +30,7 @@ import useAiSuggestion from "@/modules/playground/hooks/useAiSuggestion";
 import { useFileExplorer } from "@/modules/playground/hooks/useFileExplorer";
 import { usePlayground } from "@/modules/playground/hooks/usePlayground";
 import { findFilePath } from "@/modules/playground/lib";
+import UserButton from "@/modules/auth/components/user-button";
 import {
   TemplateFile,
   TemplateFolder,
@@ -509,6 +510,9 @@ const MainPlaygroundPage = () => {
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
+
+                <Separator orientation="vertical" className="h-4 mx-1" />
+                <UserButton />
               </div>
             </div>
           </header>

@@ -5,10 +5,16 @@ import { currentUser } from "@/modules/auth/actions";
 import { TemplateFolder } from "../lib/path-to-json";
 
 export const getPlaygroundById = async (id: string) => {
+  const user = await currentUser();
+  if (!user?.id) {
+    return null;
+  }
+
   try {
-    const playground = await db.playground.findUnique({
+    const playground = await db.playground.findFirst({
       where: {
         id,
+        userId: user.id,
       },
       select: {
         id: true,
@@ -25,6 +31,7 @@ export const getPlaygroundById = async (id: string) => {
     return playground;
   } catch (error) {
     console.log("Error : getPlaygroundById", error);
+    return null;
   }
 };
 
@@ -33,10 +40,21 @@ export const SaveUpdatedCode = async (
   data: TemplateFolder
 ) => {
   const user = await currentUser();
-
-  if (!user) return null;
+  if (!user?.id) return null;
 
   try {
+    const playground = await db.playground.findFirst({
+      where: {
+        id: playgroundId,
+        userId: user.id,
+      },
+    });
+
+    if (!playground) {
+      console.log("SaveUpdatedCode error: Unauthorized playground access");
+      return null;
+    }
+
     const updatedPlaygroundd = await db.templateFile.upsert({
       where: {
         playgroundId,

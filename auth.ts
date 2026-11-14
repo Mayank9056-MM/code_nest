@@ -8,93 +8,34 @@ import { getUserById } from "./modules/auth/actions";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   callbacks: {
-    /**
-     * Handle user creation and account linking after a sucessful sign-in
-     */
     async signIn({ user, account }) {
-      if (!user || !account || !user.email) return false;
-
-      // check if user already exists
-      const existingUser = await db.user.findUnique({
-        where: { email: user.email },
-      });
-
-      // if user not exists create a new one
-      if (!existingUser) {
-        const newUser = await db.user.create({
-          data: {
-            email: user.email,
-            name: user.name ?? null,
-            image: user.image ?? null,
-
-            accounts: {
-              create: {
-                type: account.type,
-                provider: account.provider,
-                providerAccountId: account.providerAccountId,
-                refreshToken: account.refresh_token,
-                accessToken: account.access_token,
-                expiresAt: account.expires_at,
-                tokenType: account.token_type,
-                scope: account.scope,
-                idToken: account.id_token,
-                sessionState: account.session_state ? String(account.session_state) : null,
-              },
-            },
-          },
-        });
-
-        if (!newUser) return false; // Returns false if user creation fails
-      } else {
-        // Link the account if user exists
-        const existingAccount = await db.account.findUnique({
-          where: {
-            provider_providerAccountId: {
-              provider: account.provider,
-              providerAccountId: account.providerAccountId,
-            },
-          },
-        });
-
-        // If the account does not exist, create it
-        if (!existingAccount) {
-          await db.account.create({
-            data: {
-              userId: existingUser.id,
-              type: account.type,
-              provider: account.provider,
-              providerAccountId: account.providerAccountId,
-              refreshToken: account.refresh_token,
-              accessToken: account.access_token,
-              expiresAt: account.expires_at,
-              tokenType: account.token_type,
-              scope: account.scope,
-              idToken: account.id_token,
-              sessionState: account.session_state ? String(account.session_state) : null,
-            },
-          });
-        }
-      }
-
+      if (!user || !account) return false;
       return true;
     },
 
-    async jwt({ token }) {
-      if (!token.sub) return token;
+    async jwt({ token, user }) {
+      // On initial sign-in, user contains the database user returned from the adapter
+      if (user) {
+        token.sub = user.id;
+        token.role = (user as { role?: UserRole }).role || "USER";
+      }
 
-      const existingUser = await getUserById(token.sub);
+      if (token.sub) {
+        const existingUser = await getUserById(token.sub);
 
-      if (!existingUser) return token;
-
-      token.name = existingUser.name;
-      token.email = existingUser.email;
-      token.role = existingUser.role;
+        if (existingUser) {
+          token.name = existingUser.name;
+          token.email = existingUser.email;
+          token.role = existingUser.role;
+          token.picture = existingUser.image;
+        }
+      }
 
       return token;
     },
 
     async session({ session, token }) {
-      // Attach the user ID from the token to the session
+      // Attach the user ID and properties from token to session
       if (token.sub && session.user) {
         session.user.id = token.sub;
       }
@@ -103,16 +44,27 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         session.user.role = token.role as UserRole;
       }
 
+      if (token.name && session.user) {
+        session.user.name = token.name;
+      }
+
+      if (token.email && session.user) {
+        session.user.email = token.email;
+      }
+
+      if (token.picture && session.user) {
+        session.user.image = token.picture as string;
+      }
+
       return session;
     },
   },
 
-  secret: process.env.AUTH_SECRET,
+  ...authConfig,
   adapter: PrismaAdapter(db),
   session: { strategy: "jwt" },
   pages: {
     signIn: "/auth/sign-in",
     error: "/auth/error",
   },
-  ...authConfig,
 });

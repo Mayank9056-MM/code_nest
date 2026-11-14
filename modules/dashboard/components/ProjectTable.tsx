@@ -60,10 +60,10 @@ interface ProjectTableProps {
   onUpdateProject?: (
     id: string,
     data: { title: string; description: string }
-  ) => Promise<void>;
-  onDeleteProject?: (id: string) => Promise<void>;
+  ) => Promise<unknown>;
+  onDeleteProject?: (id: string) => Promise<unknown>;
   onDuplicateProject?: (id: string) => Promise<unknown>;
-  onMarkasFavorite?: (id: string) => Promise<void>;
+  onMarkasFavorite?: (id: string) => Promise<unknown>;
 }
 
 interface EditProjectData {

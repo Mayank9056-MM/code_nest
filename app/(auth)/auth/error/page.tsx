@@ -40,10 +40,17 @@ function AuthErrorContent() {
         };
       case "OAuthSignin":
       case "OAuthCallback":
+      case "CallbackRouteError":
         return {
           title: "Sign In Cancelled",
           description:
-            "The sign in process was interrupted or cancelled. Please try signing in again.",
+            "The sign in process was interrupted or encountered an error. Please try signing in again.",
+        };
+      case "OAuthAccountNotLinked":
+        return {
+          title: "Account Already Exists",
+          description:
+            "An account with this email was registered using a different provider. Account linking has been enabled, please try signing in again.",
         };
       default:
         return {

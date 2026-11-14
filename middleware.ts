@@ -4,7 +4,7 @@ import {
   DEFAULT_LOGIN_REDIRECT,
   apiAuthPrefix,
   publicRoutes,
-  authRotues,
+  authRoutes,
 } from "@/routes";
 import authConfig from "./auth.config";
 
@@ -15,15 +15,16 @@ export default auth((req) => {
   const isLoggedIn = !!req.auth;
 
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
-
+  const isApiRoute = nextUrl.pathname.startsWith("/api");
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
+  const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
-  const isAuthRoute = authRotues.includes(nextUrl.pathname);
-
+  // Allow NextAuth authentication API routes
   if (isApiAuthRoute) {
     return null;
   }
 
+  // If already logged in, redirect away from sign-in and auth error pages
   if (isAuthRoute) {
     if (isLoggedIn) {
       return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
@@ -31,8 +32,21 @@ export default auth((req) => {
     return null;
   }
 
+  // If not logged in and accessing protected API routes, return 401 JSON
+  if (!isLoggedIn && isApiRoute) {
+    return Response.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  // If not logged in and accessing protected pages, redirect to sign-in
   if (!isLoggedIn && !isPublicRoute) {
-    return Response.redirect(new URL("/auth/sign-in", nextUrl));
+    let callbackUrl = nextUrl.pathname;
+    if (nextUrl.search) {
+      callbackUrl += nextUrl.search;
+    }
+    const encodedCallbackUrl = encodeURIComponent(callbackUrl);
+    return Response.redirect(
+      new URL(`/auth/sign-in?callbackUrl=${encodedCallbackUrl}`, nextUrl)
+    );
   }
 
   return null;

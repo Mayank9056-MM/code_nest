@@ -18,6 +18,9 @@ import {
   Zap,
   Database,
   FlameIcon,
+  ChevronsUpDown,
+  LogOut,
+  User as UserIcon,
 } from "lucide-react";
 import {
   Sidebar,
@@ -34,6 +37,16 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import Image from "next/image";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useCurrentUser } from "@/modules/auth/hooks/use-current-user";
+import LogoutButton from "@/modules/auth/components/logout-button";
 
 // Define the interface for a single playground item, icon is now a string
 interface PlaygroundData {
@@ -61,6 +74,7 @@ export function DashboardSidebar({
   initialPlaygroundData?: PlaygroundData[];
 }) {
   const pathname = usePathname();
+  const user = useCurrentUser();
   const starredPlaygrounds = (initialPlaygroundData ?? []).filter((p) => p.starred);
   const recentPlaygrounds = initialPlaygroundData ?? [];
 
@@ -194,15 +208,77 @@ export function DashboardSidebar({
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter>
+      <SidebarFooter className="border-t border-border/50 p-2">
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild tooltip="Settings">
-              <Link href="/settings">
-                <Settings className="h-4 w-4" />
-                <span>Settings</span>
-              </Link>
-            </SidebarMenuButton>
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <SidebarMenuButton
+                    size="lg"
+                    className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground cursor-pointer"
+                  >
+                    <Avatar className="h-8 w-8 rounded-lg">
+                      <AvatarImage src={user.image ?? undefined} alt={user.name ?? "User"} />
+                      <AvatarFallback className="rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 font-semibold text-xs">
+                        {(user.name || user.email || "U").slice(0, 2).toUpperCase()}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="grid flex-1 text-left text-sm leading-tight group-data-[collapsible=icon]:hidden">
+                      <span className="truncate font-semibold">{user.name || "User"}</span>
+                      <span className="truncate text-xs text-muted-foreground">{user.email}</span>
+                    </div>
+                    <ChevronsUpDown className="ml-auto size-4 group-data-[collapsible=icon]:hidden" />
+                  </SidebarMenuButton>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  className="w-56 rounded-lg p-1.5 shadow-lg"
+                  side="right"
+                  align="end"
+                  sideOffset={4}
+                >
+                  <div className="flex items-center gap-2 p-2">
+                    <Avatar className="h-8 w-8 rounded-lg">
+                      <AvatarImage src={user.image ?? undefined} alt={user.name ?? "User"} />
+                      <AvatarFallback className="rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 font-semibold text-xs">
+                        {(user.name || user.email || "U").slice(0, 2).toUpperCase()}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="grid flex-1 text-left text-sm leading-tight">
+                      <span className="truncate font-semibold">{user.name || "User"}</span>
+                      <span className="truncate text-xs text-muted-foreground">{user.email}</span>
+                    </div>
+                  </div>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link href="/" className="flex items-center gap-2 cursor-pointer">
+                      <Home className="h-4 w-4 text-muted-foreground" />
+                      <span>Home</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/dashboard" className="flex items-center gap-2 cursor-pointer">
+                      <LayoutDashboard className="h-4 w-4 text-muted-foreground" />
+                      <span>Dashboard</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <LogoutButton>
+                    <DropdownMenuItem className="text-rose-600 dark:text-rose-400 focus:text-rose-600 focus:bg-rose-50 dark:focus:bg-rose-950/30 cursor-pointer w-full">
+                      <LogOut className="h-4 w-4 mr-2" />
+                      <span>Log Out</span>
+                    </DropdownMenuItem>
+                  </LogoutButton>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <SidebarMenuButton asChild tooltip="Sign In">
+                <Link href="/auth/sign-in" className="flex items-center gap-2">
+                  <UserIcon className="h-4 w-4" />
+                  <span>Sign In</span>
+                </Link>
+              </SidebarMenuButton>
+            )}
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>

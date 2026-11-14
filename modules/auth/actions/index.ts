@@ -1,14 +1,18 @@
 "use server";
 
-import { auth, signIn } from "@/auth";
+import { auth, signIn, signOut } from "@/auth";
 import { db } from "@/lib/db";
 
 export const getUserById = async (id: string) => {
   try {
     const user = await db.user.findUnique({
       where: { id },
-      include: {
-        accounts: true,
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        image: true,
       },
     });
 
@@ -40,9 +44,13 @@ export const currentUser = async () => {
 };
 
 export async function handleGoogleSignIn() {
-  await signIn("google");
+  await signIn("google", { redirectTo: "/dashboard" });
 }
 
 export async function handleGithubSignIn() {
-  await signIn("github");
+  await signIn("github", { redirectTo: "/dashboard" });
+}
+
+export async function handleSignOut() {
+  await signOut({ redirectTo: "/auth/sign-in" });
 }
