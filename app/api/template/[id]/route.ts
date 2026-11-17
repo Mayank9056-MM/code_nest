@@ -1,12 +1,8 @@
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
 import { templatePaths } from "@/lib/template";
-import {
-  readTemplateStructureFromJson,
-  saveTemplateStructureToJson,
-} from "@/modules/playground/lib/path-to-json";
+import { scanTemplateDirectory } from "@/modules/playground/lib/path-to-json";
 import path from "path";
-import fs from "fs/promises";
 import { NextRequest } from "next/server";
 
 function validateJsonStructure(data: unknown): boolean {
@@ -14,7 +10,7 @@ function validateJsonStructure(data: unknown): boolean {
     JSON.parse(JSON.stringify(data));
     return true;
   } catch (error) {
-    console.log("Invalid JSON struture:", error);
+    console.log("Invalid JSON structure:", error);
     return false;
   }
 }
@@ -46,18 +42,15 @@ export async function GET(
   const templatePath = templatePaths[templateKey];
 
   if (!templatePath) {
-    return Response.json({ erro: "Invalid template" }, { status: 404 });
+    return Response.json({ error: "Invalid template" }, { status: 404 });
   }
 
   try {
-    const inputPath = path.join(process.cwd(), templatePath);
-    const outputFile = path.join(process.cwd(), `output/${templateKey}.json`);
+    const inputPath = path.join(process.cwd(), "vibecode-starters", templatePath);
 
     console.log("Input Path:", inputPath);
-    console.log("Output Path:", outputFile);
 
-    await saveTemplateStructureToJson(inputPath, outputFile);
-    const result = await readTemplateStructureFromJson(outputFile);
+    const result = await scanTemplateDirectory(inputPath);
 
     if (!validateJsonStructure(result.items)) {
       return Response.json(
@@ -65,8 +58,6 @@ export async function GET(
         { status: 500 }
       );
     }
-
-    await fs.unlink(outputFile);
 
     return Response.json(
       { success: true, templateJson: result },
