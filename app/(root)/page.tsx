@@ -5,7 +5,6 @@ import { FeatureGrid } from "@/modules/home/components/FeatureGrid";
 import { HowItWorks } from "@/modules/home/components/HowItWorks";
 import { FrameworkGrid } from "@/modules/home/components/FrameworkGrid";
 import { AIShowcase } from "@/modules/home/components/AIShowcase";
-import { PricingSection } from "@/modules/home/components/PricingSection";
 import { FAQSection } from "@/modules/home/components/FAQSection";
 import { FinalCTA } from "@/modules/home/components/FinalCTA";
 
@@ -30,13 +29,10 @@ export default function Home() {
       {/* 7. AI Capabilities */}
       <AIShowcase />
 
-      {/* 8. Pricing */}
-      <PricingSection />
-
-      {/* 9. FAQ */}
+      {/* 8. FAQ */}
       <FAQSection />
 
-      {/* 10. Final CTA */}
+      {/* 9. Final CTA */}
       <FinalCTA />
     </div>
   );

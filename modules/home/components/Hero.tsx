@@ -17,14 +17,6 @@ export function Hero() {
   return (
     <section className="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 flex flex-col items-center text-center">
-        {/* Subtle Terminal Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#2B332E] bg-[#141715] text-[#9BA59E] text-xs font-mono mb-8 hover:border-[#C5F36B]/40 transition-colors">
-          <span className="flex h-1.5 w-1.5 rounded-full bg-[#C5F36B] animate-pulse" />
-          <span className="text-[#F2F5F2]">CodeNest v2.0</span>
-          <span className="text-[#2B332E]">•</span>
-          <span>WebContainers + Monaco Runtime</span>
-        </div>
-
         {/* Primary Headline */}
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#F2F5F2] max-w-4xl leading-[1.08]">
           Your code. Your ideas. <br className="hidden sm:inline" />

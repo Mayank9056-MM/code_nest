@@ -45,11 +45,6 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#pricing" className="hover:text-[#F2F5F2] transition-colors">
-                  Pricing
-                </Link>
-              </li>
-              <li>
                 <Link href="/dashboard" className="text-[#C5F36B] hover:text-[#D6FF83] transition-colors">
                   Launch Editor
                 </Link>

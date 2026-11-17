@@ -35,11 +35,6 @@ const FAQS = [
       "When logged in via OAuth (Google or GitHub), your projects, starred workspaces, and code files are persisted directly to our cloud MongoDB database. Saving can be done with Ctrl+S (or Cmd+S), and all updates are synced automatically to ensure your work is preserved across browser sessions and devices.",
   },
   {
-    question: "What is the difference between the Free and Pro plans?",
-    answer:
-      "The Free tier gives every developer access to unlimited in-browser sandbox boots, all 6 official framework templates, Monaco Editor, integrated xterm terminal, and standard AI code completions. The Pro tier provides higher AI throughput, expanded cloud persistence for large multi-file projects, and team workspace management.",
-  },
-  {
     question: "Can I connect and sync with GitHub repositories?",
     answer:
       "Yes. CodeNest integrates directly with GitHub via OAuth authentication. You can open and clone existing repositories into an isolated browser workspace, run dependencies, make edits, and experiment freely.",
@@ -59,7 +54,7 @@ export function FAQSection() {
             Everything you need to know
           </h2>
           <p className="mt-3 text-sm text-[#9BA59E] leading-relaxed font-normal">
-            Detailed answers regarding runtime execution, browser compatibility, security, and pricing.
+            Detailed answers regarding runtime execution, browser compatibility, security, and workspaces.
           </p>
         </div>
 

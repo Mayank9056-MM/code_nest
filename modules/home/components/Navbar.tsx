@@ -13,7 +13,6 @@ const NAV_LINKS = [
   { label: "How it works", href: "#how-it-works" },
   { label: "Frameworks", href: "#frameworks" },
   { label: "AI", href: "#ai" },
-  { label: "Pricing", href: "#pricing" },
   { label: "FAQ", href: "#faq" },
 ];
 
