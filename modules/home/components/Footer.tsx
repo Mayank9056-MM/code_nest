@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { BrandLogo } from "./BrandLogo";
-import { Github, Twitter, Disc as Discord, Terminal } from "lucide-react";
+import { Github, Twitter, Disc as Discord } from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();

@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Cpu } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 const FRAMEWORKS = [
   {
@@ -68,7 +68,7 @@ export function FrameworkGrid() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
           <div>
             <div className="text-xs font-mono uppercase tracking-wider text-[#C5F36B] mb-2 flex items-center gap-1.5">
-              <span>// Verified Runtime Support</span>
+              <span>{"// Verified Runtime Support"}</span>
             </div>
             <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#F2F5F2]">
               Native framework templates

@@ -36,7 +36,7 @@ export function HowItWorks() {
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-14">
           <div className="text-xs font-mono uppercase tracking-wider text-[#C5F36B] mb-2 flex items-center justify-center gap-1.5">
-            <span>// Three-Step Execution</span>
+            <span>{"// Three-Step Execution"}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#F2F5F2]">
             How CodeNest works
@@ -48,7 +48,7 @@ export function HowItWorks() {
 
         {/* 3 Step Process Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 relative">
-          {STEPS.map((item, index) => {
+          {STEPS.map((item) => {
             const Icon = item.icon;
             return (
               <div

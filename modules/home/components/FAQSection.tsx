@@ -53,7 +53,7 @@ export function FAQSection() {
         {/* Header */}
         <div className="text-center mb-12">
           <div className="text-xs font-mono uppercase tracking-wider text-[#C5F36B] mb-2 flex items-center justify-center gap-1.5">
-            <span>// Frequently Asked Questions</span>
+            <span>{"// Frequently Asked Questions"}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#F2F5F2]">
             Everything you need to know

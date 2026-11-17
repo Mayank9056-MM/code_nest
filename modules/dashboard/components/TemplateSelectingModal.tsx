@@ -22,7 +22,6 @@ import {
   Zap,
   Clock,
   Check,
-  Plus,
 } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";

@@ -12,7 +12,6 @@ import {
   Lightbulb,
   type LucideIcon,
   Plus,
-  Settings,
   Star,
   Terminal,
   Zap,
@@ -36,7 +35,6 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
-import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -182,10 +180,10 @@ export function DashboardSidebar({
                       <SidebarMenuItem key={playground.id}>
                         <SidebarMenuButton
                           asChild
-                          isActive={pathname === `playground/${playground.id}`}
+                          isActive={pathname === `/playground/${playground.id}`}
                           tooltip={playground.name}
                         >
-                          <Link href={`playground/${playground.id}`}>
+                          <Link href={`/playground/${playground.id}`}>
                             {IconComponent && (
                               <IconComponent className="h-4 w-4" />
                             )}

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Terminal, Play, Sparkles, Check, Copy } from "lucide-react";
+import { ArrowRight, Terminal, Sparkles, Check, Copy } from "lucide-react";
 
 export function Hero() {
   const [copied, setCopied] = useState(false);

@@ -1,5 +1,5 @@
 import React from "react";
-import { Sparkles, Terminal, ToggleLeft, Check, Cpu } from "lucide-react";
+import { Sparkles, Terminal, ToggleLeft, Cpu } from "lucide-react";
 
 export function AIShowcase() {
   return (
@@ -8,7 +8,7 @@ export function AIShowcase() {
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-14">
           <div className="text-xs font-mono uppercase tracking-wider text-[#C5F36B] mb-2 flex items-center justify-center gap-1.5">
-            <span>// Contextual Intelligence</span>
+            <span>{"// Contextual Intelligence"}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#F2F5F2]">
             AI assistance that stays out of your way
